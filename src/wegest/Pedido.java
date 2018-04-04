@@ -1,11 +1,13 @@
 package wegest;
 
+import java.sql.Date;
+
 public class Pedido {
 	
-	private String numeroPedido;
-	private String codigoCliente;
+	private String codPedido;
+	private String codCliente;
 	private String tipoPedido;
-	private String fechaEntrega;
+	private Date fechaEntrega;
 	private String estadoPedido;
 	private String maquina;
 	private int cantidadPedido;
@@ -15,9 +17,9 @@ public class Pedido {
 	private int pedidoEnCola;
 	private double prioridad;
 	
-	public Pedido(String numeroPedido,String codigoCliente, String tipoPedido, int cantidadPedido, String estadoPedido, String fechaEntrega, String maquina) {
-		this.numeroPedido = numeroPedido;
-		this.codigoCliente = codigoCliente;
+	public Pedido(String codPedido,String codCliente, String tipoPedido, int cantidadPedido, String estadoPedido, Date fechaEntrega, String maquina) {
+		this.codPedido = codPedido;
+		this.codCliente = codCliente;
 		this.tipoPedido = tipoPedido;
 		this.cantidadPedido = cantidadPedido;
 		this.estadoPedido = estadoPedido;
@@ -25,20 +27,20 @@ public class Pedido {
 		this.maquina = maquina;
 	}
 	
-	public String getNumeroPedido() {
-		return numeroPedido;
+	public String getCodPedido() {
+		return codPedido;
 	}
 	
-	public void setNumeroPedido(String numeroPedido) {
-		this.numeroPedido = numeroPedido;
+	public void setCodPedido(String numeroPedido) {
+		this.codPedido = numeroPedido;
 	}
 	
-	public String getCodigoCliente() {
-		return codigoCliente;
+	public String getCodCliente() {
+		return codCliente;
 	}
 
-	public void setCodigoCliente(String codigoCliente) {
-		this.codigoCliente = codigoCliente;
+	public void setCodCliente(String codigoCliente) {
+		this.codCliente = codigoCliente;
 	}
 
 	public String getTipoPedido() {
@@ -49,11 +51,11 @@ public class Pedido {
 		this.tipoPedido = tipoPedido;
 	}
 
-	public String getFechaEntrega() {
+	public Date getFechaEntrega() {
 		return fechaEntrega;
 	}
 
-	public void setFechaEntrega(String fechaEntrega) {
+	public void setFechaEntrega(Date fechaEntrega) {
 		this.fechaEntrega = fechaEntrega;
 	}
 
