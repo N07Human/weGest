@@ -1,5 +1,6 @@
 package wegest;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ListIterator;
@@ -23,7 +24,7 @@ public class GeneradorLista {
 
 		while (itCreador.hasNext()) { // CREAR OBJETOS PEDIDO
 			data = itCreador.next();
-			Pedido pedido = new Pedido(data[0], data[1], data[3], Integer.parseInt(data[4]), data[8], data[6], data[7]);
+			Pedido pedido = new Pedido(data[0], data[1], data[3], Integer.parseInt(data[4]), data[8], (java.sql.Date) SimpleDateFormat.parse(data[6]), data[7]);
 			Cliente cliente = new ClienteEmpresa(data[1], data[2], data[3], null, null);
 			pedidos.add(pedido);
 			clientes.add(cliente);
