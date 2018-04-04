@@ -1,6 +1,7 @@
 package wegest;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ListIterator;
 
 public class GeneradorLista {
@@ -41,8 +42,21 @@ public class GeneradorLista {
 			System.out.println(personaInfo + "\n");
 		}
 	}
-	public int getCodPedido(){
-		return codigo;		
+	public int getCodPedido(int i){
+		return Integer.parseInt(pedidos.get(i).getCodPedido());
+	}
+	public int getCodCliente(int i) {
+		return Integer.parseInt(pedidos.get(i).getCodCliente());
+	}
+	public int getTiempoProceso(int i) {
+		return pedidos.get(i).getTiempoProceso();
+	}
+	public Date getFechaEntrega(int i) {
+		return pedidos.get(i).getFechaEntrega();
+	}
+	
+	public int getTotalPedidos(){
+		return pedidos.size();
 	}
 }
 
