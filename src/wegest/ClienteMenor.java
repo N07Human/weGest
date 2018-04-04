@@ -8,7 +8,7 @@ public class ClienteMenor extends Cliente {
 		super(codigoCliente, razonSocial, direccion, telefono);
 	}
 	
-	public double getPrioridad() {
+	public double getPrioridad() { 
 		return prioridad;
 	}
 	

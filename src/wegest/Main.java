@@ -24,7 +24,7 @@ public class Main {
    */     
        // if(correcto){
         	
-        	ArrayList<String[]> datosExcel = ImportExcel.importExcel("datosEmpresa.xlsx",10);
+        /*	ArrayList<String[]> datosExcel = ImportExcel.importExcel("datosEmpresa.xlsx",10);
         	ArrayList<Pedido> pedidos = new ArrayList<>();
         	ArrayList<Cliente> clientes = new ArrayList<>();
        
@@ -57,8 +57,13 @@ public class Main {
     				personaInfo += fila + " ";	// for ( tipoVariable nombreCualquiera : arregloaLeer)
     			}
     			System.out.println(personaInfo+"\n");
-    		}
+    		}*/
         //}
+		
+		
+		GeneradorListas listas = new GeneradorListas();
+		
+		listas.imprimirListas();
         
 		
 	}
