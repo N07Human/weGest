@@ -55,7 +55,7 @@ public class ImportExcel {
 					if (cell.getCellTypeEnum() == CellType.STRING)
 						fila[contador] = cell.getStringCellValue() + "";
 
-					// SI ES TIPO DATE 
+					if(cell.getCellTypeEnum() == CellType.valueOf(java.lang.String Date));// SI ES TIPO DATE 
 					
 
 					// Si hemos terminado con la uasdltima celda de la fila
