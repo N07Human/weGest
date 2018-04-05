@@ -1,8 +1,11 @@
 package wegest;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ListIterator;
+
+import javax.swing.JTextField;
 
 public class GeneradorLista {
 
@@ -20,6 +23,8 @@ public class GeneradorLista {
 	String[] data = itCreador.next(); // EL PRIMER ELEMENTO SON LAS ETIQUETAS
 
 	public void generarListas() {
+		JTextField textField = new JTextField();
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yy");
 
 		while (itCreador.hasNext()) { // CREAR OBJETOS PEDIDO
 			data = itCreador.next();
@@ -51,7 +56,7 @@ public class GeneradorLista {
 	public int getTiempoProceso(int i) {
 		return pedidos.get(i).getTiempoProceso();
 	}
-	public Date getFechaEntrega(int i) {
+	public String getFechaEntrega(int i) {
 		return pedidos.get(i).getFechaEntrega();
 	}
 	

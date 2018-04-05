@@ -2,6 +2,7 @@ package wegest;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -56,7 +57,12 @@ public class ImportExcel {
 						fila[contador] = cell.getStringCellValue() + "";
 
 					// SI ES TIPO DATE (FALTA)
-					if(cell.getCellTypeEnum() == CellType.valueOf(java.lang.String Date));					
+					if(cell.getCellTypeEnum()!=CellType.NUMERIC && cell.getCachedFormulaResultTypeEnum()!=CellType.STRING) {
+						//Date fecha = cell.getDateCellValue();
+						Date date = cell.getDateCellValue();
+						SimpleDateFormat formatoFecha = new SimpleDateFormat();
+						fila[contador] = formatoFecha.format(date);				
+					}
 
 					// Si hemos terminado con la uasdltima celda de la fila
 					if ((contador + 1) % numColums == 0) {
@@ -79,6 +85,11 @@ public class ImportExcel {
 		System.out.println("Excel importado correctamente\n");
 
 		return data;
+	}
+
+	private static String dateInString(Date fecha) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

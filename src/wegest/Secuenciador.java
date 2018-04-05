@@ -18,7 +18,6 @@ public class Secuenciador {
 		while(i<totalPedidos) {
 			for(i=0;i<totalPedidos;i++) {
 				NodoArbol nuevo = new NodoArbol(lista.getCodPedido(i),lista.getCodCliente(i));
-				secuenciador.
 			}
 		}
 	}

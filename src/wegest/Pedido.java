@@ -7,7 +7,7 @@ public class Pedido {
 	private String codPedido;
 	private String codCliente;
 	private String tipoPedido;
-	private Date fechaEntrega;
+	private String fechaEntrega;
 	private String estadoPedido;
 	private String maquina;
 	private int cantidadPedido;
@@ -17,7 +17,7 @@ public class Pedido {
 	private int pedidoEnCola;
 	private double prioridad;
 	
-	public Pedido(String codPedido,String codCliente, String tipoPedido, int cantidadPedido, String estadoPedido, Date fechaEntrega, String maquina) {
+	public Pedido(String codPedido,String codCliente, String tipoPedido, int cantidadPedido, String estadoPedido, String fechaEntrega, String maquina) {
 		this.codPedido = codPedido;
 		this.codCliente = codCliente;
 		this.tipoPedido = tipoPedido;
@@ -51,11 +51,11 @@ public class Pedido {
 		this.tipoPedido = tipoPedido;
 	}
 
-	public Date getFechaEntrega() {
+	public String getFechaEntrega() {
 		return fechaEntrega;
 	}
 
-	public void setFechaEntrega(Date fechaEntrega) {
+	public void setFechaEntrega(String fechaEntrega) {
 		this.fechaEntrega = fechaEntrega;
 	}
 
