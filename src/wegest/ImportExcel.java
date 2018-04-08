@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 //import org.apache.poi.ss.usermodel.CellType;
@@ -38,7 +39,7 @@ public class ImportExcel {
 				// Iterador de celdas
 				Iterator<Cell> cellIterator = row.cellIterator();
 				// contador para el array donde guardamos los datos de cada fila
-				int contador = 0;
+				int contador = 0; 
 				// Array para guardar los datos de cada fila
 				// y añadirlo al ArrayList
 				String[] fila = new String[numColums];
@@ -55,17 +56,21 @@ public class ImportExcel {
 					// si es cadena de texto asad
 					if (cell.getCellTypeEnum() == CellType.STRING)
 						fila[contador] = cell.getStringCellValue() + "";
+					
+					
 
-					// SI ES TIPO DATE (FALTA)
-					if(cell.getCellTypeEnum()!=CellType.NUMERIC && cell.getCachedFormulaResultTypeEnum()!=CellType.STRING) {
+					/*// SI ES TIPO DATE (FALTA)
+					if(cell.getCellTypeEnum()!=CellType.NUMERIC && cell.getCellTypeEnum()!=CellType.STRING) {
 						//Date fecha = cell.getDateCellValue();
 						Date date = cell.getDateCellValue();
-						SimpleDateFormat formatoFecha = new SimpleDateFormat();
+						SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-mm-yy");
 						fila[contador] = formatoFecha.format(date);				
-					}
+					}*/
 
 					// Si hemos terminado con la uasdltima celda de la fila
-					if ((contador + 1) % numColums == 0) {
+					if ((contador+1) % numColums == 0) {
+						
+						fila[contador] = cell.getStringCellValue() + "";
 						// Añadimos la fila al ArrayList con todos los datos
 						data.add(fila);
 					}
