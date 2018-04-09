@@ -1,17 +1,15 @@
 package wegest;
 
-import javax.swing.JOptionPane;
-
-public class ArbolProrizado {
+public class Arbol {
 	
 	private NodoArbol raiz;
 	
-	public ArbolProrizado() {
+	public Arbol() {
 		this.raiz = null;
 	}
 	
-	public void agregarHoja(double prioridad, int codCliente) {
-		NodoArbol nuevo = new NodoArbol(prioridad,codCliente);
+	public void agregarHoja(double prioridad, Pedido pedido) {
+		NodoArbol nuevo = new NodoArbol(prioridad,pedido);
 		if(raiz == null) {
 			raiz = nuevo;	
 		}else {
