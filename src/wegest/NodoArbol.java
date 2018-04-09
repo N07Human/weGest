@@ -2,11 +2,11 @@ package wegest;
 
 public class NodoArbol {
     private double prioridad;   // Este dato podria ser la prioridad o algo con lo qeu vamos a ordenar.
-    private int codCliente;  // Podria ser el nombre o el codigo del cliente.
+    private Pedido pedido;  // Podria ser el nombre o el codigo del cliente.
     private NodoArbol hijoDerecho, hijoIzquierdo;
-    public NodoArbol(double prioridad, int codCliente){
+    public NodoArbol(double prioridad, Pedido pedido){
         this.prioridad = prioridad;
-        this.setCodCliente(codCliente);
+        this.setPedido(pedido);
         this.hijoDerecho=null;
         this.hijoIzquierdo=null;
     }
@@ -33,13 +33,13 @@ public class NodoArbol {
     }
 
 
-	public int getCodCliente() {
-		return codCliente;
+	public Pedido getPedido() {
+		return pedido;
 	}
 
 
-	public void setCodCliente(int codCliente) {
-		this.codCliente = codCliente;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
             
 }
