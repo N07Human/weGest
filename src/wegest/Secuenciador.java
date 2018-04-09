@@ -5,10 +5,10 @@ public class Secuenciador {
 	private double prioridad;
 	private int codCliente;
 	private GeneradorLista lista;
-	private ArbolBinario secuenciador;
+	private ArbolProrizado secuenciador;
 	
 	public Secuenciador() {
-		this.secuenciador = new ArbolBinario();
+		this.secuenciador = new ArbolProrizado();
 		this.lista = new GeneradorLista();
 	}
 	

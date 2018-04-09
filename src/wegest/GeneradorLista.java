@@ -3,32 +3,39 @@ package wegest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.ListIterator;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JTextField;
 
 public class GeneradorLista {
 
 	//private ArrayList<String[]> datosExcel;
-	private ArrayList<Pedido> pedidos;
+	private Map<String,Pedido> pedidos;
 	private ArrayList<Cliente> clientes;
+	private ArrayList<String[]> datosExcel;
 
 	public GeneradorLista() {
-		this.pedidos = new ArrayList<>();
+		this.pedidos = new HashMap<>();
 		this.clientes = new ArrayList<>();
+		this.datosExcel = ImportExcel.importExcel("datosEmpresa.xlsx", 10);
 		
 	}
-	ArrayList<String[]> datosExcel = ImportExcel.importExcel("datosEmpresa.xlsx", 10);
-	ListIterator<String[]> itCreador = datosExcel.listIterator();
-	String[] data = itCreador.next(); // EL PRIMER ELEMENTO SON LAS ETIQUETAS
+	
+	
+	//ArrayList<String[]> datosExcel = ImportExcel.importExcel("datosEmpresa.xlsx", 10);
+	//String[] data; // EL PRIMER ELEMENTO SON LAS ETIQUETAS
 
 	public void generarListas() {
-
-		while (itCreador.hasNext()) { // CREAR OBJETOS PEDIDO
-			data = itCreador.next();
-			Pedido pedido = new Pedido(data[0], data[1], data[3], Integer.parseInt(data[4]), data[8], data[6], data[7]);
+		ListIterator<String[]> itCreator = datosExcel.listIterator();
+		String[] data = itCreator.next();
+		while (itCreator.hasNext()) { // CREAR OBJETOS PEDIDO
+			data = itCreator.next();
+			Pedido pedido = new Pedido(data[0], data[1], data[3], data[4], data[8], data[6], data[7]);
 			Cliente cliente = new ClienteEmpresa(data[1], data[2], data[3], null, null);
-			pedidos.add(pedido);
+			pedidos.put(data[0],pedido); // key = codPedido, Objeto = pedido
 			clientes.add(cliente);
 		}
 	}
@@ -45,8 +52,20 @@ public class GeneradorLista {
 			System.out.println(personaInfo + "\n");
 		}
 	}
+	
+	public void imprimirPedidos() {
+		Set<String> keys = pedidos.keySet();
+		for(String i:keys) {
+			System.out.println(i + " " +pedidos.get(i).getCodCliente());
+		}
+	}
+	
+	public String getCodigoCliente(String i) {
+		return pedidos.get(i).getCodCliente();
+	}
+	
 	public int getCodPedido(int i){
-		return Integer.parseInt(pedidos.get(i).getCodPedido());
+		return Integer.parseInt(pedidos.get(Integer.toString(i)).getCodPedido());
 	}
 	public int getCodCliente(int i) {
 		return Integer.parseInt(pedidos.get(i).getCodCliente());

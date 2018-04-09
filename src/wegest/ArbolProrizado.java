@@ -2,11 +2,11 @@ package wegest;
 
 import javax.swing.JOptionPane;
 
-public class ArbolBinario {
+public class ArbolProrizado {
 	
 	private NodoArbol raiz;
 	
-	public ArbolBinario() {
+	public ArbolProrizado() {
 		this.raiz = null;
 	}
 	

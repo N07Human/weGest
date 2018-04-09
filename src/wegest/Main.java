@@ -66,7 +66,9 @@ public class Main {
 		GeneradorLista listas = new GeneradorLista();
 		
 		listas.imprimirListas();
-        
+		listas.generarListas();
+        listas.imprimirPedidos();
+		//listas.getCodigoCliente("11384");
 		
 	}
 

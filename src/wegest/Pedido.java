@@ -10,14 +10,14 @@ public class Pedido {
 	private String fechaEntrega;
 	private String estadoPedido;
 	private String maquina;
-	private int cantidadPedido;
+	private String cantidadPedido;
 	private int tiempoProceso;
 	private int tiempoDisponible;
 	private int pedidoHecho;
 	private int pedidoEnCola;
 	private double prioridad;
 	
-	public Pedido(String codPedido,String codCliente, String tipoPedido, int cantidadPedido, String estadoPedido, String maquina, String fechaEntrega) {
+	public Pedido(String codPedido,String codCliente, String tipoPedido, String cantidadPedido, String estadoPedido, String maquina, String fechaEntrega) {
 		this.codPedido = codPedido;
 		this.codCliente = codCliente;
 		this.tipoPedido = tipoPedido;
@@ -67,11 +67,11 @@ public class Pedido {
 		this.estadoPedido = estadoPedido;
 	}
 
-	public int getCantidadPedido() {
+	public String getCantidadPedido() {
 		return cantidadPedido;
 	}
 
-	public void setCantidadPedido(int cantidadPedido) {
+	public void setCantidadPedido(String cantidadPedido) {
 		this.cantidadPedido = cantidadPedido;
 	}
 
