@@ -17,7 +17,7 @@ public class Pedido {
 	private int pedidoEnCola;
 	private double prioridad;
 	
-	public Pedido(String codPedido,String codCliente, String tipoPedido, int cantidadPedido, String estadoPedido, String fechaEntrega, String maquina) {
+	public Pedido(String codPedido,String codCliente, String tipoPedido, int cantidadPedido, String estadoPedido, String maquina, String fechaEntrega) {
 		this.codPedido = codPedido;
 		this.codCliente = codCliente;
 		this.tipoPedido = tipoPedido;

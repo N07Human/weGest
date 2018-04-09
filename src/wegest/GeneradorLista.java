@@ -23,8 +23,6 @@ public class GeneradorLista {
 	String[] data = itCreador.next(); // EL PRIMER ELEMENTO SON LAS ETIQUETAS
 
 	public void generarListas() {
-		JTextField textField = new JTextField();
-		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yy");
 
 		while (itCreador.hasNext()) { // CREAR OBJETOS PEDIDO
 			data = itCreador.next();
