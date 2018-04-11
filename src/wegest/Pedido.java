@@ -113,6 +113,10 @@ public class Pedido {
 	public void setPrioridad() {
 		this.prioridad = prioridad;
 	}
+
+	public String getMaquina() {
+		return maquina;
+	}
 	
 	
 

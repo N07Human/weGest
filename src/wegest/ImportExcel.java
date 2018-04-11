@@ -2,18 +2,20 @@ package wegest;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
 //import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ImportExcel {
+public class ImportExcel{
 
 	@SuppressWarnings("deprecation")
 	public static ArrayList<String[]> importExcel(String fileName, int numColums) {
@@ -51,30 +53,35 @@ public class ImportExcel {
 
 					// si es numerico
 					if (cell.getCellTypeEnum() == CellType.NUMERIC)
-						fila[contador] = (int) cell.getNumericCellValue() + "";
+						if (DateUtil.isCellDateFormatted(cell)) { //FORMATO FECHA
+			                // Create an instance of SimpleDateFormat used for formatting 
+			                // the string representation of date (month/day/year)
+			                DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+
+			                // Get the date today using cell.getDateCellValue() 
+			                Date fecha = cell.getDateCellValue();    
+			                // Using DateFormat format method we can create a string 
+			                // representation of a date with the defined format.
+			                fila[contador] = df.format(fecha)+ "";
+
+			            } else {
+			            	fila[contador] = (int) cell.getNumericCellValue() + "";
+			            }
+						
 
 					// si es cadena de texto asad
 					if (cell.getCellTypeEnum() == CellType.STRING)
 						fila[contador] = cell.getStringCellValue() + "";
 					
-					
-
-					/*// SI ES TIPO DATE (FALTA)
-					if(cell.getCellTypeEnum()!=CellType.NUMERIC && cell.getCellTypeEnum()!=CellType.STRING) {
-						//Date fecha = cell.getDateCellValue();
-						Date date = cell.getDateCellValue();
-						SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-mm-yy");
-						fila[contador] = formatoFecha.format(date);				
-					}*/
-
+		
 					// Si hemos terminado con la uasdltima celda de la fila
-					if ((contador+1) % numColums == 0) {
+					if ((contador) % numColums == 0) {
 						
-						fila[contador] = cell.getStringCellValue() + "";
+						//fila[contador] = cell.getStringCellValue() + "";
 						// Añadimos la fila al ArrayList con todos los datos
 						data.add(fila);
 					}
-					// Incrementamos el contadorsa asd
+					// Incrementamos el contadorsa
 					// con cada fila terminada al redeclarar arriba el contador,
 					// no obtenemos excepciones de ArrayIndexOfBounds
 					contador++;

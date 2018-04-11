@@ -1,19 +1,25 @@
 package wegest;
 
-public class Secuenciador {
+public class SecuanciadorFep implements CalculoPrioridad {
 	
 	private double prioridad;
 	private int codCliente;
 	private GeneradorLista lista;
-	private Arbol secuenciador;
+	private ABB secuenciador;
 	
 	/*DEBERIA SECUENCIAR LOS PEDIDOS POR PRIORIDAD DESDE EL ARBOL De CADA MAQUINA
 	DEBE ENTREGAR UN DOCUMENTO CON LA LISTA DE PEDIDOS A REALIZAR
 	CON CODIGO PEDIDO, CANTIDAD, TIEMPO APP, ESTADO*/
 	
-	public Secuenciador() {
-		this.secuenciador = new Arbol();
+	public SecuanciadorFep() {
+		this.secuenciador = new ABB();
 		this.lista = new GeneradorLista();
+	}
+
+	@Override
+	public double calcularPrioridad() {
+		
+		return 0;
 	}
 	
 	/*public void generarArbol() {
