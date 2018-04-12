@@ -10,7 +10,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExportExcel{
 
-public static boolean exportExcel(String nombreHoja, Map<String, Object[]> data, String fileName) {
+public boolean exportExcel(String nombreHoja, Map<String, Object[]> data, String fileName) {
 
 	// Creamos el libro de trabajo
 	XSSFWorkbook libro = new XSSFWorkbook();

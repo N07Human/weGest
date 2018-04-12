@@ -1,10 +1,5 @@
 package wegest;
 
-import java.util.ArrayList;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.TreeMap;
-
 public class Main {
 
 	public static void main(String[] args) {		
@@ -63,13 +58,20 @@ public class Main {
         //}
 		*/
 		
-		GeneradorLista listas = new GeneradorLista();
+		//GestionListas listas = new GestionListas();
 		
-		listas.imprimirListas();
-		listas.generarListas();
-        listas.imprimirPedidos();
+		
+		//listas.generarListas();
+		//listas.setMaquinas(3);
+		//listas.imprimirListas();
+        //listas.imprimirPedidos();
 		//listas.getCodigoCliente("11384");
 		
+		Secuenciador sec = new Secuenciador();
+		
+		sec.secuenciar();
+		//sec.imprimirImport();
+		sec.imprimirSecuenciacionMaquinas();
 	}
 
 }
