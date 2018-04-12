@@ -21,10 +21,13 @@ public class Secuenciador{
 		this.lista = new GestionListas();
 	}
 
+	public void setMaquinas(int numMaquinas) {
+		lista.setMaquinas(numMaquinas);
+	}
 	public void secuenciar() {
 		System.out.println("Entra a secuenciar (Secuenciar)");
 		lista.generarListas();
-		lista.setMaquinas(3);
+		//lista.setMaquinas(3);
 		ArrayList<Pedido> pedidos = lista.getPedidos();
 		System.out.println(pedidos.size());
 		long prioridad;
@@ -98,6 +101,10 @@ public class Secuenciador{
 	
 	public void imprimirSecuenciacionMaquinas() {
 		lista.imprimirSecuenciacionMaquinas();
+	}
+	
+	public void exportSecuenciacion() {
+		lista.exportarExcel();
 	}
 	
 	

@@ -37,7 +37,7 @@ public class Maquina {
 		Set<Long> keys = lista.keySet();
 		for(long i:keys) {
 			LinkedList<Pedido> listaInterna = lista.get(i);
-			for(int j=0;j<listaInterna.size();j++) {
+			for(int j=0;j<listaInterna.size();) {
 				if(listaInterna.get(j).getCodPedido().equals(codPedido))
 					System.out.println("ExistePedido");
 					return true;
@@ -66,11 +66,37 @@ public class Maquina {
 		}
 		
 	}
+	
+	
 
 	public void exportarExcel() {
-		
-		
+		Map<String,Object[]> datos = new TreeMap<String,Object[]>();
+		Object[] filas = new Object[3];
+		Set<Long> keys = lista.keySet();
+		int contador = 0;
+		for(long i:keys) {
+			LinkedList<Pedido> aux = new LinkedList<>();
+			aux = lista.get(i);
+			for(int j=0;j<aux.size();j++) {
+				/*
+				filas[0] = aux.get(j).getCodPedido();
+				filas[1] = aux.get(j).getCodCliente();
+				filas[2] = aux.get(j).getCodMaquina();
+				*/
+				
+				
+				datos.put(Integer.toString(contador), new Object[] {aux.get(j).getCodPedido(),aux.get(j).getCodCliente(),aux.get(j).getCodMaquina()});
+				System.out.println("Entro for put");
+				contador++;
+			}
+			
+				//System.out.println(aux.get(j).getCodPedido()+" "+aux.get(j).getCodCliente()+" "+aux.get(j).getCodMaquina());
+		}
+		ExportExcel.exportExcel("DatosPersonas",datos,"/home/fothwira/Documentos/ExcelSALIDA.xlsx");
+			
 	}
+		
+		
 	
 	/*public void imprimirLista() {
 		Set<Long> keys = lista.keySet();

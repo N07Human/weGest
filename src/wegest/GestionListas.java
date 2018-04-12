@@ -16,7 +16,7 @@ public class GestionListas {
 	private List<Maquina> maquinas;
 	private ImportExcel datosEntrada;
 	//private ExportExcel datosSalida;
-	private Secuenciador secuenciador;
+	//private Secuenciador secuenciador;
 	
 
 	public GestionListas() {

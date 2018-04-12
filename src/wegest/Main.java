@@ -69,6 +69,7 @@ public class Main {
 		
 		Secuenciador sec = new Secuenciador();
 		
+		sec.setMaquinas(3);
 		sec.secuenciar();
 		//sec.imprimirImport();
 		sec.imprimirSecuenciacionMaquinas();
@@ -76,6 +77,7 @@ public class Main {
 		sec.agregarNuevoPedido(nuevoPedido);
 		sec.secuenciar();
 		sec.imprimirSecuenciacionMaquinas();
+		sec.exportSecuenciacion();
 	}
 
 }
