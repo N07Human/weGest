@@ -20,13 +20,31 @@ public class Maquina {
 	
 	public void agregarPedido(long prioridad,Pedido pedido) { //Agragar pedido, si no existe hash lo crea, si existe lo agrega a la lista de ese hash
 		if(lista.containsKey(prioridad)) {
-			lista.get(prioridad).add(pedido);
+			if(!existePedido(pedido)) {
+				lista.get(prioridad).add(pedido);
+			}
 		}else {
 			LinkedList<Pedido> nuevo = new LinkedList<Pedido>();
+			//nuevo.add(pedido);
 			lista.put(prioridad, nuevo);
 			lista.get(prioridad).add(pedido);
 			
 		}
+	}
+	
+	private boolean existePedido(Pedido pedido) {
+		String codPedido = pedido.getCodPedido();
+		Set<Long> keys = lista.keySet();
+		for(long i:keys) {
+			LinkedList<Pedido> listaInterna = lista.get(i);
+			for(int j=0;j<listaInterna.size();j++) {
+				if(listaInterna.get(j).getCodPedido().equals(codPedido))
+					System.out.println("ExistePedido");
+					return true;
+			}
+			
+		}
+		return false;
 	}
 	
 	public String getCodMaquina() {
