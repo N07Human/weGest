@@ -30,6 +30,7 @@ public class ExportExcel {
 		Set<String> keyset = data.keySet();
 		int rownum = 0;
 		for (String key : keyset) {
+			System.out.println("FILA: "+key);
 			// cramos la fila
 			Row row = hoja.createRow(rownum++);
 			// obtenemos los datos de la fila
@@ -37,6 +38,7 @@ public class ExportExcel {
 			int cellnum = 0;
 			// iteramos cada dato de la fila
 			for (Object obj : objArr) {
+				
 				// Creamos la celda
 				Cell cell = row.createCell(cellnum++);
 				// Setteamos el valor con el tipo de dato correspondiente

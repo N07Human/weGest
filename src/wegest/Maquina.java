@@ -84,7 +84,6 @@ public class Maquina {
 				filas[2] = aux.get(j).getCodMaquina();
 				*/
 				
-				
 				datos.put(Integer.toString(contador), new Object[] {aux.get(j).getCodPedido(),aux.get(j).getCodCliente(),aux.get(j).getCodMaquina()});
 				System.out.println("Entro for put");
 				contador++;

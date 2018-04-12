@@ -1,6 +1,9 @@
-package wegest;
+package cementerio;
 
 import java.util.ArrayList;
+
+import wegest.Pedido;
+
 import java.util.*;
 
 public class NodoArbol {
