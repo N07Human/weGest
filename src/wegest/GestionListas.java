@@ -7,6 +7,8 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
+import cementerio.ClienteEmpresa;
+
 
 public class GestionListas {
 
@@ -14,15 +16,16 @@ public class GestionListas {
 	private Map<String,Pedido> pedidos;
 	private Map<String,Cliente> clientes;
 	private List<Maquina> maquinas;
-	private ImportExcel datosExcel;
+	private ImportExcel datosEntrada;
+	//private ExportExcel datosSalida;
+	//private Secuenciador secuenciador;
 	
 
 	public GestionListas() {
 		this.pedidos = new HashMap<>();
 		this.clientes = new HashMap<>();
-		this.maquinas= new ArrayList<>(3);
-		this.datosExcel = new ImportExcel("Datos_Pedidos_Test.xlsx", 10);
-		
+		this.maquinas= new ArrayList<>();
+		this.datosEntrada = new ImportExcel("Datos_Pedidos_Test.xlsx", 10);
 	}
 	
 	// FALTAAAAAAAAAAAAAAAAAAA
@@ -37,7 +40,7 @@ public class GestionListas {
 
 	
 	public void generarListas() {
-		ListIterator<String[]> itCreator = datosExcel.getDatosImportados().listIterator();
+		ListIterator<String[]> itCreator = datosEntrada.getDatosImportados().listIterator();
 		String[] data = itCreator.next();
 		while (itCreator.hasNext()) { // CREAR OBJETOS PEDIDO
 			data = itCreator.next();
@@ -73,6 +76,7 @@ public class GestionListas {
 		
 	}
 	
+	
 	private Maquina getMaquina(String codMaquina) {
 		if(codMaquina=="M1") {
 			return maquinas.get(0);
@@ -102,7 +106,7 @@ public class GestionListas {
 	}*/
 	
 	public void imprimirImport() {
-		ListIterator<String[]> it = datosExcel.getDatosImportados().listIterator();
+		ListIterator<String[]> it = datosEntrada.getDatosImportados().listIterator();
 		while (it.hasNext()) {
 			String[] datos = it.next(); // .next() lee hasta que encuentra espacio, a diferencia de
 										// nextLine() que lee hasta un salto de línea
@@ -135,6 +139,11 @@ public class GestionListas {
 			System.out.println("Maquina: "+(i+1));
 			maquinas.get(i).exportarExcel();
 		}
+	}
+
+	public void agregarNuevoPedido(Pedido pedido) {
+		System.out.println("Solicita agregar pedido");
+		pedidos.put(pedido.getCodPedido(),pedido);
 	}
 	
 

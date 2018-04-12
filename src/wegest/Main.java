@@ -69,9 +69,15 @@ public class Main {
 		
 		Secuenciador sec = new Secuenciador();
 		
+		sec.setMaquinas(3);
 		sec.secuenciar();
 		//sec.imprimirImport();
 		sec.imprimirSecuenciacionMaquinas();
+		Pedido nuevoPedido = new Pedido("000000", "0000", "CAJITAS" ,"50", "NPR", "M3", "12-12-2018");
+		sec.agregarNuevoPedido(nuevoPedido);
+		sec.secuenciar();
+		sec.imprimirSecuenciacionMaquinas();
+		sec.exportSecuenciacion();
 	}
 
 }

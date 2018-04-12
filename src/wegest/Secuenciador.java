@@ -21,11 +21,15 @@ public class Secuenciador{
 		this.lista = new GestionListas();
 	}
 
+	public void setMaquinas(int numMaquinas) {
+		lista.setMaquinas(numMaquinas);
+	}
 	public void secuenciar() {
 		System.out.println("Entra a secuenciar (Secuenciar)");
 		lista.generarListas();
-		lista.setMaquinas(3);
+		//lista.setMaquinas(3);
 		ArrayList<Pedido> pedidos = lista.getPedidos();
+		System.out.println(pedidos.size());
 		long prioridad;
 		System.out.println("pedidos.size(): "+pedidos.size());
 		for(int i=0;i<pedidos.size();i++){ // CREAR OBJETOS PEDIDO
@@ -52,6 +56,10 @@ public class Secuenciador{
 		System.out.println("Sale de secuenciar (Secuenciar)");
 	}
 	
+	
+	public void agregarNuevoPedido(Pedido pedido) {
+		lista.agregarNuevoPedido(pedido);
+	}
 	
 	private boolean comprobarEstadoNPRPRG(String estadoPedido) {
 		if(estadoPedido.equals("NPR")||estadoPedido.equals("PRG"))
@@ -93,6 +101,10 @@ public class Secuenciador{
 	
 	public void imprimirSecuenciacionMaquinas() {
 		lista.imprimirSecuenciacionMaquinas();
+	}
+	
+	public void exportSecuenciacion() {
+		lista.exportarExcel();
 	}
 	
 	

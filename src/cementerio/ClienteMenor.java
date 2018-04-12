@@ -1,4 +1,6 @@
-package wegest;
+package cementerio;
+
+import wegest.Cliente;
 
 public class ClienteMenor extends Cliente {
 	

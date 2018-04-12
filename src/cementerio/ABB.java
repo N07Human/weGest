@@ -1,4 +1,6 @@
-package wegest;
+package cementerio;
+
+import wegest.Pedido;
 
 public class ABB {
 	
