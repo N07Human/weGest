@@ -1,10 +1,11 @@
 package wegest;
 
 import java.util.ArrayList;
+import java.util.*;
 
 public class NodoArbol {
     private double prioridad;   // Este dato podria ser la prioridad o algo con lo qeu vamos a ordenar.
-    private ArrayList<Pedido> pedidos;  // Podria ser el nombre o el codigo del cliente.
+    private List<Pedido> pedidos;  // Podria ser el nombre o el codigo del cliente.
     private NodoArbol hijoDerecho, hijoIzquierdo;
     public NodoArbol(double prioridad){
         this.prioridad = prioridad;

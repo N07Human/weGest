@@ -16,10 +16,17 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ImportExcel{
+	
+	private ArrayList<String[]> importado = new ArrayList<>();
 
 	@SuppressWarnings("deprecation")
-	public static ArrayList<String[]> importExcel(String fileName, int numColums) {
-
+	public ImportExcel(String fileName, int numColums) {
+		
+		this.importado = importarExcel(fileName, numColums);
+	}
+	
+	public ArrayList<String[]> importarExcel(String fileName, int numColums){
+		
 		// ArrayList donde guardaremos todos los datos del excel
 		ArrayList<String[]> data = new ArrayList<>();
 
@@ -98,10 +105,9 @@ public class ImportExcel{
 
 		return data;
 	}
-
-	private static String dateInString(Date fecha) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public ArrayList<String[]> getDatosImportados() {
+		return importado;
 	}
 
 }

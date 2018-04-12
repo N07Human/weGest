@@ -2,6 +2,6 @@ package wegest;
 
 public interface CalculoPrioridad {
 	
-	public double calcularPrioridad();
+	public long calcularPrioridad(String fecha);
 
 }

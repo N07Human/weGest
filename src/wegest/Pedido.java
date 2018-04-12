@@ -9,7 +9,7 @@ public class Pedido {
 	private String tipoPedido;
 	private String fechaEntrega;
 	private String estadoPedido;
-	private String maquina;
+	private String codMaquina;
 	private String cantidadPedido;
 	private int tiempoProceso;
 	private int tiempoDisponible;
@@ -17,14 +17,14 @@ public class Pedido {
 	private int pedidoEnCola;
 	private double prioridad;
 	
-	public Pedido(String codPedido,String codCliente, String tipoPedido, String cantidadPedido, String estadoPedido, String maquina, String fechaEntrega) {
+	public Pedido(String codPedido,String codCliente, String tipoPedido, String cantidadPedido, String estadoPedido, String codMaquina, String fechaEntrega) {
 		this.codPedido = codPedido;
 		this.codCliente = codCliente;
 		this.tipoPedido = tipoPedido;
 		this.cantidadPedido = cantidadPedido;
 		this.estadoPedido = estadoPedido;
 		this.fechaEntrega = fechaEntrega;
-		this.maquina = maquina;
+		this.codMaquina = codMaquina;
 	}
 	
 	public String getCodPedido() {
@@ -110,12 +110,12 @@ public class Pedido {
 	public double getPrioridad() {
 		return prioridad;
 	}
-	public void setPrioridad() {
+	public void setPrioridad(double prioridad) {
 		this.prioridad = prioridad;
 	}
 
-	public String getMaquina() {
-		return maquina;
+	public String getCodMaquina() {
+		return codMaquina;
 	}
 	
 	
