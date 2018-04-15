@@ -10,7 +10,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
-public class Listas{
+public class Listas {
 
 	// private ArrayList<String[]> datosExcel;
 	private Map<String, Pedido> pedidos;
@@ -29,17 +29,14 @@ public class Listas{
 	}
 
 	public void importar() {
-		//ListIterator<String[]> itCreator = datosEntrada.getDatosImportados().listIterator();
-		//String[] data = itCreator.next();
-		for(int i=1;i<datosEntrada.getDatosImportados().size();i++) {
-		//while (itCreator.hasNext()) { // CREAR OBJETOS PEDIDO
-			//data = itCreator.next();
+
+		for (int i = 1; i < datosEntrada.getDatosImportados().size(); i++) {
 			String[] data = datosEntrada.getDatosImportados().get(i);
 			Pedido pedido = new Pedido(data[0], data[1], data[3], data[4], data[8], data[7], data[6], data[9]);
 			Cliente cliente = new Cliente(data[1], data[2], data[3], " ");
 			pedidos.put(data[0], pedido); // key = codPedido, Objeto = pedido
 			clientes.put(data[1], cliente);
-			System.out.println("Pedido Ingresado: "+pedidos.get(data[0]).getCodPedido());
+			System.out.println("Pedido Ingresado: " + pedidos.get(data[0]).getCodPedido());
 		}
 	}
 
@@ -51,15 +48,15 @@ public class Listas{
 		for (String i : keys) { // CREAR OBJETOS PEDID
 			Pedido pedido = pedidos.get(i);
 			String maquina = pedido.getCodMaquina();
-			long prioridad = (df.parse(pedido.getFechaEntrega()).getTime())/10000;
+			long prioridad = (df.parse(pedido.getFechaEntrega()).getTime()) / 10000;
 			switch (maquina) {
 			case "M1":
 				maquinas.get(0).agregarPedido(Long.toString(prioridad), pedido);
 				System.out.println(pedidos.get(i).getCodCliente());
 				break;
-			// System.out.println("Se cargo en M1 (secuenciar)"); // <.-----ELIMINAR
+
 			case "M2":
-				//System.out.println("HOLI ADENTRO DE ORDENAR 2!");
+
 				maquinas.get(1).agregarPedido(Long.toString(prioridad), pedido);
 				break;
 			case "M3":
@@ -87,7 +84,6 @@ public class Listas{
 		}
 	}
 
-
 	private void setMaquinas() { // COnsulta cuantas máquinas crear
 		for (int i = 0; i < 3; i++) {
 			String codMaquina = "M" + Integer.toString(i);
@@ -96,7 +92,6 @@ public class Listas{
 			maquinasSecuenciadas.add(maquina);
 		}
 	}
-
 
 	public void imprimirImport() {
 		ListIterator<String[]> it = datosEntrada.getDatosImportados().listIterator();
