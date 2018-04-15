@@ -29,15 +29,17 @@ public class Listas{
 	}
 
 	public void importar() {
-		ListIterator<String[]> itCreator = datosEntrada.getDatosImportados().listIterator();
-		String[] data = itCreator.next();
-		while (itCreator.hasNext()) { // CREAR OBJETOS PEDIDO
-			data = itCreator.next();
+		//ListIterator<String[]> itCreator = datosEntrada.getDatosImportados().listIterator();
+		//String[] data = itCreator.next();
+		for(int i=1;i<datosEntrada.getDatosImportados().size();i++) {
+		//while (itCreator.hasNext()) { // CREAR OBJETOS PEDIDO
+			//data = itCreator.next();
+			String[] data = datosEntrada.getDatosImportados().get(i);
 			Pedido pedido = new Pedido(data[0], data[1], data[3], data[4], data[8], data[7], data[6], data[9]);
 			Cliente cliente = new Cliente(data[1], data[2], data[3], " ");
 			pedidos.put(data[0], pedido); // key = codPedido, Objeto = pedido
 			clientes.put(data[1], cliente);
-			// System.out.println("Pedido Ingresado: "+pedidos.get(data[0]).getCodPedido());
+			System.out.println("Pedido Ingresado: "+pedidos.get(data[0]).getCodPedido());
 		}
 	}
 
@@ -46,10 +48,10 @@ public class Listas{
 		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		setMaquinas();
 		Set<String> keys = pedidos.keySet();
-		for (String i : keys) { // CREAR OBJETOS PEDIDO
+		for (String i : keys) { // CREAR OBJETOS PEDID
 			Pedido pedido = pedidos.get(i);
 			String maquina = pedido.getCodMaquina();
-			long prioridad = df.parse(pedido.getFechaEntrega()).getTime();
+			long prioridad = (df.parse(pedido.getFechaEntrega()).getTime())/10000;
 			switch (maquina) {
 			case "M1":
 				maquinas.get(0).agregarPedido(Long.toString(prioridad), pedido);
