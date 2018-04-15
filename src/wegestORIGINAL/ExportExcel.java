@@ -1,4 +1,4 @@
-package wegest;
+package wegestORIGINAL;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExportExcel {
 
-	public boolean exportExcel(String nombreHoja, Map<String,Object[]> data, String fileName) {
+	public static boolean exportExcel(String nombreHoja, Map<String,Object[]> data, String fileName) {
 
 		// Creamos el libro de trabajo
 		XSSFWorkbook libro = new XSSFWorkbook();
@@ -30,8 +30,7 @@ public class ExportExcel {
 		Set<String> keyset = data.keySet();
 		int rownum = 0;
 		for (String key : keyset) {
-			System.out.println("Fila: "+key);
-			
+			System.out.println("FILA: "+key);
 			// cramos la fila
 			Row row = hoja.createRow(rownum++);
 			// obtenemos los datos de la fila
