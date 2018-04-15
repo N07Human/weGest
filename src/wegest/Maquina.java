@@ -94,92 +94,54 @@ public class Maquina implements Secuenciable {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void secuenciar(String hInicio) throws ParseException {
 		ordenarLista();
-		SimpleDateFormat df = new SimpleDateFormat("hh:mm");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		SimpleDateFormat dfatraso = new SimpleDateFormat("dd-MM-yyyy");
 		SimpleDateFormat dff = new SimpleDateFormat("dd/MM 'a las' hh:mm");
 		
-		Date horaInicio = new Date();
-		horaInicio.setHours(8);
-		horaInicio.setMinutes(0);
-		double horas = horaInicio.getHours();
-		double minutos = horaInicio.getMinutes();
-		double horasSumar, h;
-		double minutosSumar, m;
+		Date horaInicioActual = new Date();
+		horaInicioActual = df.parse(hInicio);
+		Date horaInicioSiguiente = horaInicioActual;
 		Pedido aux = listaOrdenada.get(0);
 		double tiempoSumar = 0;
 		int key = 0;
 		listaSecuenciada.put("0",
-				new Object[] { "Fecha de Inicio", "Codigo Pedido", "Detalle", "Cantidad", "Fecha de Entrega" });
+				new Object[] { "Fecha de Inicio", "Codigo Pedido", "Detalle", "Cantidad", "Fecha de Entrega", "Atraso"});
 		for (int i = 1; i < listaOrdenada.size(); i++) {
 			aux = listaOrdenada.get(i);
 			if (!aux.getEstadoPedido().equals("TRM")) {
-				if (key == 0) {
-					listaSecuenciada.put("1", new Object[] { dff.format(horaInicio), aux.getCodPedido(),
-							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega() });
-					key = 1;
-				} else {
 					key++;
-					
-					
-					
+					horaInicioActual = horaInicioSiguiente;
 					tiempoSumar = Double.parseDouble(aux.getCantidadPedido()) / velocidadHistorica;
-					System.out.println(tiempoSumar);
-					System.out.println(Double.parseDouble(aux.getCantidadPedido()) / velocidadHistorica);
+					//System.out.println(tiempoSumar);
+					//System.out.println(Double.parseDouble(aux.getCantidadPedido()) / velocidadHistorica);
 					
-					horaInicio=new Date((long) (horaInicio.getTime() + (tiempoSumar*60*60)*1000));
-					System.out.println("HORA NUEVA: "+horaInicio.getTime());
+					horaInicioSiguiente=new Date((long) (horaInicioActual.getTime() + (tiempoSumar*60*60)*1000));
+					//System.out.println("HORA InicioActual: "+horaInicioActual.getTime());
+					//System.out.println("HORA InicioActual: "+dff.format(horaInicioActual));
+					//System.out.println("HORA InicioSiguiente: "+horaInicioSiguiente.getTime());
+					//System.out.println("HORA InicioSiguiente: "+dff.format(horaInicioSiguiente));
+					//System.out.println("Fecha Entrega: "+aux.getFechaEntrega());
+					//System.out.println("Fecha Entrega: "+dfatraso.parse(aux.getFechaEntrega()).getTime());
 					
-					listaSecuenciada.put(Integer.toString(key), new Object[] { dff.format(horaInicio), aux.getCodPedido(),
-							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega() });
+					int atraso = calcularAtraso(horaInicioSiguiente, dfatraso.parse(aux.getFechaEntrega()));
+					//System.out.println("ATRASO: "+atraso);
 					
-					/*horasSumar = (int) tiempoSumar;
-
-					minutosSumar = (tiempoSumar - horasSumar) * 60;
-					h = horas + horasSumar;
-					m = minutos + minutosSumar;
-
-					while ((h >= 24) || (m >= 60)) {
-
-						if (m >= 60) {
-							h = h + (m / 60);
-						}
-						if (h >= 24) {
-							h = h - 24;
-			
-						}
-						m = (m / 60) - (int) Math.floor(m / 60);
-
-					}
-
-					String hora = null, minuto = null;
-					if (h < 10) {
-						hora = "0" + Integer.toString((int) h);
-					} else {
-						hora = Integer.toString((int) h);
-					}
-					if (m < 10) {
-						minuto = "0" + Integer.toString((int) m);
-					} else {
-						minuto = Integer.toString((int) m);
-					}
-					System.out.println("Ingresar pedido: " + aux.getCodPedido() + " a las " + hora + ":" + minuto
-							+ " Feecha de entrega: " + aux.getFechaEntrega());
-					System.out.println("");
-					listaSecuenciada.put(Integer.toString(key), new Object[] { hora + ":" + minuto, aux.getCodPedido(),
-							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega() });
-					horas = h;
-					minutos = m;
-					
-					*/
-				}
+					listaSecuenciada.put(Integer.toString(key), new Object[] { dff.format(horaInicioActual), aux.getCodPedido(),
+							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega(), Integer.toString(atraso) });
 
 			}
 
 		}
 	}
 
+	public int calcularAtraso(Date fechaTermino, Date fechaEntrega) {
+		long actual = fechaTermino.getTime();
+		long entrega = fechaEntrega.getTime();	
+		long atraso = (actual-entrega);
+		return (int)(atraso/(60*60*24*1000));		
+	}
 	public void exportar() {
 		ExportExcel exportador = new ExportExcel();
 		exportador.exportExcel("Maquina 1", listaSecuenciada, codMaquina + ".xlsx");
