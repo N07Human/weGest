@@ -1,4 +1,6 @@
-package wegest;
+package auxiliar;
+
+import java.sql.Date;
 
 public class Pedido {
 	

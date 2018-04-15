@@ -1,6 +1,6 @@
 package cementerio;
 
-import wegest.Cliente;
+import wegestORIGINAL.Cliente2;
 
 public class ClienteEmpresa extends Cliente {
 	

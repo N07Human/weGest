@@ -1,8 +1,6 @@
-package wegest;
+package auxiliar;
 
 import java.text.ParseException;
-
-import auxiliar.Listas;
 
 public class Main {
 

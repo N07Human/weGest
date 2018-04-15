@@ -1,6 +1,6 @@
 package cementerio;
 
-import wegest.Pedido;
+import wegestORIGINAL.Pedido;
 
 public class ABB {
 	

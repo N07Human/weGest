@@ -1,4 +1,4 @@
-package wegest;
+package auxiliar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
