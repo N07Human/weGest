@@ -19,7 +19,6 @@ public class ImportExcel{
 	
 	private ArrayList<String[]> importado = new ArrayList<>();
 
-	@SuppressWarnings("deprecation")
 	public ImportExcel(String fileName, int numColums) {
 		
 		this.importado = importarExcel(fileName, numColums);

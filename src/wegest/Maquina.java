@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-
 public class Maquina implements Secuenciable {
 
 	private String codMaquina;
@@ -24,25 +23,25 @@ public class Maquina implements Secuenciable {
 																	// existe
 																	// lo agrega a la lista de ese hash
 
-		if(existePrioridad(prioridad)) {
+		if (existePrioridad(prioridad)) {
 			lista.get(prioridad).add(pedido);
-		}else{
+		} else {
 			LinkedList<Pedido> nuevo = new LinkedList<Pedido>();
 			nuevo.add(pedido);
 			lista.put(prioridad, nuevo);
 		}
 	}
 
-	private boolean existePrioridad(String prioridad) {	
-		if(lista.containsKey(prioridad)) {
+	private boolean existePrioridad(String prioridad) {
+		if (lista.containsKey(prioridad)) {
 			return true;
 		}
 		return false;
 	}
 
 	private void ordenarLista() {
-        Object[] keys = lista.keySet().toArray();
-        Arrays.sort(keys);
+		Object[] keys = lista.keySet().toArray();
+		Arrays.sort(keys);
 		for (Object k : keys) {
 			List<Pedido> listaIn = lista.get(k);
 			for (int i = 0; i < listaIn.size(); i++) {
@@ -74,12 +73,6 @@ public class Maquina implements Secuenciable {
 				if (inicio.getTime() <= actual.getTime() && current.getEstadoPedido().equals("TRM")) {
 					cantidadTotalPedidos += Double.parseDouble(current.getCantidadPedido());
 					cantidadHoras += Double.parseDouble(current.getTiempoProceso());
-					System.out.println("Cantidad de Horas: " + cantidadHoras);
-					System.out.print("Cod Pedido: " + current.getCodCliente());
-					System.out.print("Total Pedidos: " + cantidadTotalPedidos);
-					System.out.print("Horas: " + cantidadHoras);
-					System.out.println("Maquina: " + current.getCodMaquina());
-					System.out.println("Estado: " + current.getEstadoPedido());
 				}
 
 			}
@@ -99,11 +92,12 @@ public class Maquina implements Secuenciable {
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void secuenciar(String hInicio) throws ParseException {
 		ordenarLista();
 		SimpleDateFormat df = new SimpleDateFormat("hh:mm");
+		SimpleDateFormat dff = new SimpleDateFormat("dd-MM");
 		Date hoy = new Date();
 		Date horaInicio = df.parse(hInicio);
 		double horas = horaInicio.getHours();
@@ -113,42 +107,37 @@ public class Maquina implements Secuenciable {
 		Pedido aux = listaOrdenada.get(0);
 		double tiempoSumar = 0;
 		int key = 0;
-		System.out.println("PEDIDOS TOTAL: "+listaOrdenada.size());
-		listaSecuenciada.put("0", new Object[] { "Fecha de Inicio", "Codigo Pedido", "Detalle",
-				"Cantidad", "Fecha de Entrega" });
+		listaSecuenciada.put("0",
+				new Object[] { "Fecha de Inicio", "Codigo Pedido", "Detalle", "Cantidad", "Fecha de Entrega" });
 		for (int i = 1; i < listaOrdenada.size(); i++) {
 			aux = listaOrdenada.get(i);
-			System.out.println("For: "+i);
 			if (!aux.getEstadoPedido().equals("TRM")) {
-				if (key==0) {
-					listaSecuenciada.put("1", new Object[] { df.format(horaInicio), aux.getCodPedido(), aux.getTipoPedido(),
-							aux.getCantidadPedido(), aux.getFechaEntrega() });
-					key=1;
+				if (key == 0) {
+					listaSecuenciada.put("1", new Object[] { df.format(horaInicio), aux.getCodPedido(),
+							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega() });
+					key = 1;
 				} else {
 					key++;
-					System.out.println("Contador: "+key);
-					// System.out.println(tiempoSumar);
 					tiempoSumar = Double.parseDouble(aux.getCantidadPedido()) / velocidadHistorica;
 					horasSumar = (int) tiempoSumar;
-					//System.out.println("Tiempo a Sumar: " + tiempoSumar);
+
 					minutosSumar = (tiempoSumar - horasSumar) * 60;
 					h = horas + horasSumar;
 					m = minutos + minutosSumar;
 
-					// System.out.println("Entra con h: "+h+" y m: "+m);
 					while ((h >= 24) || (m >= 60)) {
-						// System.out.println("Entra con h: "+h+" y m: "+m);
+
 						if (m >= 60) {
 							h = h + (m / 60);
 						}
 						if (h >= 24) {
 							h = h - 24;
+			
 						}
 						m = (m / 60) - (int) Math.floor(m / 60);
-						// System.out.println(m);
+
 					}
 
-					// System.out.println(tiempoSumar);
 					String hora = null, minuto = null;
 					if (h < 10) {
 						hora = "0" + Integer.toString((int) h);
