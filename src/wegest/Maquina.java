@@ -16,7 +16,7 @@ public class Maquina implements Secuenciable {
 	public Maquina(String codMaquina) {
 		this.codMaquina = codMaquina;
 		this.listaOrdenada = new LinkedList<>();
-		this.lista = new LinkedHashMap<String, List<Pedido>>();
+		this.lista = new HashMap<String, List<Pedido>>();
 		this.listaSecuenciada = new LinkedHashMap<String, Object[]>();
 	}
 
@@ -50,8 +50,9 @@ public class Maquina implements Secuenciable {
 	}
 
 	private void ordenarLista() {
-		Set<String> key = lista.keySet();
-		for (String k : key) {
+        Object[] keys = lista.keySet().toArray();
+        Arrays.sort(keys);
+		for (Object k : keys) {
 			List<Pedido> listaIn = lista.get(k);
 			for (int i = 0; i < listaIn.size(); i++) {
 				listaOrdenada.add(listaIn.get(i));
