@@ -11,7 +11,8 @@ public class Maquina implements Secuenciable {
 	private List<Pedido> listaOrdenada;
 	private Map<String, Object[]> listaSecuenciada;
 	private double velocidadHistorica;
-
+	protected Calendar cal;
+	
 	public Maquina(String codMaquina) {
 		this.codMaquina = codMaquina;
 		this.listaOrdenada = new LinkedList<>();
@@ -97,9 +98,11 @@ public class Maquina implements Secuenciable {
 	public void secuenciar(String hInicio) throws ParseException {
 		ordenarLista();
 		SimpleDateFormat df = new SimpleDateFormat("hh:mm");
-		SimpleDateFormat dff = new SimpleDateFormat("dd-MM");
-		Date hoy = new Date();
-		Date horaInicio = df.parse(hInicio);
+		SimpleDateFormat dff = new SimpleDateFormat("dd/MM 'a las' hh:mm");
+		
+		Date horaInicio = new Date();
+		horaInicio.setHours(8);
+		horaInicio.setMinutes(0);
 		double horas = horaInicio.getHours();
 		double minutos = horaInicio.getMinutes();
 		double horasSumar, h;
@@ -113,13 +116,25 @@ public class Maquina implements Secuenciable {
 			aux = listaOrdenada.get(i);
 			if (!aux.getEstadoPedido().equals("TRM")) {
 				if (key == 0) {
-					listaSecuenciada.put("1", new Object[] { df.format(horaInicio), aux.getCodPedido(),
+					listaSecuenciada.put("1", new Object[] { dff.format(horaInicio), aux.getCodPedido(),
 							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega() });
 					key = 1;
 				} else {
 					key++;
+					
+					
+					
 					tiempoSumar = Double.parseDouble(aux.getCantidadPedido()) / velocidadHistorica;
-					horasSumar = (int) tiempoSumar;
+					System.out.println(tiempoSumar);
+					System.out.println(Double.parseDouble(aux.getCantidadPedido()) / velocidadHistorica);
+					
+					horaInicio=new Date((long) (horaInicio.getTime() + (tiempoSumar*60*60)*1000));
+					System.out.println("HORA NUEVA: "+horaInicio.getTime());
+					
+					listaSecuenciada.put(Integer.toString(key), new Object[] { dff.format(horaInicio), aux.getCodPedido(),
+							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega() });
+					
+					/*horasSumar = (int) tiempoSumar;
 
 					minutosSumar = (tiempoSumar - horasSumar) * 60;
 					h = horas + horasSumar;
@@ -156,6 +171,8 @@ public class Maquina implements Secuenciable {
 							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega() });
 					horas = h;
 					minutos = m;
+					
+					*/
 				}
 
 			}
