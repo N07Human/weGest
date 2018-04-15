@@ -2,8 +2,6 @@ package wegest;
 
 import java.util.ArrayList;
 
-import auxiliar.Pedido;
-
 public class Cliente {
 	
 	private String codigoCliente;

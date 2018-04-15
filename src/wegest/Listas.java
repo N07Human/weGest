@@ -10,11 +10,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
-import auxiliar.Cliente;
-import auxiliar.ImportExcel;
-import auxiliar.Maquina;
-import auxiliar.Pedido;
-
 public class Listas{
 
 	// private ArrayList<String[]> datosExcel;
@@ -62,7 +57,7 @@ public class Listas{
 				break;
 			// System.out.println("Se cargo en M1 (secuenciar)"); // <.-----ELIMINAR
 			case "M2":
-				System.out.println("HOLI ADENTRO DE ORDENAR 2!");
+				//System.out.println("HOLI ADENTRO DE ORDENAR 2!");
 				maquinas.get(1).agregarPedido(Long.toString(prioridad), pedido);
 				break;
 			case "M3":
@@ -70,7 +65,7 @@ public class Listas{
 				break;
 			}
 		}
-		System.out.println("Sale de secuenciar (Secuenciar)");
+		System.out.println("Sale de secuenciareeeeee (Secuenciar)");
 	}
 
 	public void setVelocidadHistorica(String fechaInicio) {
