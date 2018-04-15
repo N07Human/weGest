@@ -99,6 +99,7 @@ public class ImportExcel{
 			workbook.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 
 		System.out.println("Excel importado correctamente\n");

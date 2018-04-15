@@ -24,27 +24,18 @@ public class Maquina implements Secuenciable {
 																	// existe
 																	// lo agrega a la lista de ese hash
 
-		if (lista.containsKey(prioridad)) {
-			if (!existePedido(pedido)) {
-				lista.get(prioridad).add(pedido);
-			}
-		} else {
+		if(existePrioridad(prioridad)) {
+			lista.get(prioridad).add(pedido);
+		}else{
 			LinkedList<Pedido> nuevo = new LinkedList<Pedido>();
 			nuevo.add(pedido);
 			lista.put(prioridad, nuevo);
 		}
 	}
 
-	private boolean existePedido(Pedido pedido) {
-		String codPedido = pedido.getCodPedido();
-		Set<String> keys = lista.keySet();
-		for (String k : keys) {
-			List<Pedido> listaInterna = lista.get(k);
-			for (int j = 0; j < listaInterna.size();) {
-				if (listaInterna.get(j).getCodPedido().equals(codPedido))
-					System.out.println("ExistePedido");
-				return true;
-			}
+	private boolean existePrioridad(String prioridad) {	
+		if(lista.containsKey(prioridad)) {
+			return true;
 		}
 		return false;
 	}
@@ -122,20 +113,24 @@ public class Maquina implements Secuenciable {
 		Pedido aux = listaOrdenada.get(0);
 		double tiempoSumar = 0;
 		int key = 0;
+		System.out.println("PEDIDOS TOTAL: "+listaOrdenada.size());
 		listaSecuenciada.put("0", new Object[] { "Fecha de Inicio", "Codigo Pedido", "Detalle",
 				"Cantidad", "Fecha de Entrega" });
-		for (int i = 1; i < lista.size(); i++) {
+		for (int i = 1; i < listaOrdenada.size(); i++) {
 			aux = listaOrdenada.get(i);
+			System.out.println("For: "+i);
 			if (!aux.getEstadoPedido().equals("TRM")) {
-				if (i == 1) {
-					listaSecuenciada.put("1", new Object[] { df.format(hoy), aux.getCodPedido(), aux.getTipoPedido(),
+				if (key==0) {
+					listaSecuenciada.put("1", new Object[] { df.format(horaInicio), aux.getCodPedido(), aux.getTipoPedido(),
 							aux.getCantidadPedido(), aux.getFechaEntrega() });
+					key=1;
 				} else {
 					key++;
+					System.out.println("Contador: "+key);
 					// System.out.println(tiempoSumar);
 					tiempoSumar = Double.parseDouble(aux.getCantidadPedido()) / velocidadHistorica;
 					horasSumar = (int) tiempoSumar;
-					System.out.println("Tiempo a Sumar: " + tiempoSumar);
+					//System.out.println("Tiempo a Sumar: " + tiempoSumar);
 					minutosSumar = (tiempoSumar - horasSumar) * 60;
 					h = horas + horasSumar;
 					m = minutos + minutosSumar;
