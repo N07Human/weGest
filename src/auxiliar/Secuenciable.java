@@ -1,4 +1,4 @@
-package wegestORIGINAL;
+package auxiliar;
 
 import java.text.ParseException;
 

@@ -1,10 +1,8 @@
-package wegestORIGINAL;
+package auxiliar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import cementerio.ClienteEmpresa;
 
 public class Listas{
 
@@ -30,7 +28,7 @@ public class Listas{
 		while (itCreator.hasNext()) { // CREAR OBJETOS PEDIDO
 			data = itCreator.next();
 			Pedido pedido = new Pedido(data[0], data[1], data[3], data[4], data[8], data[7], data[6], data[9]);
-			Cliente cliente = new ClienteEmpresa(data[1], data[2], data[3], null, null);
+			Cliente cliente = new Cliente(data[1], data[2], data[3], " ");
 			pedidos.put(data[0], pedido); // key = codPedido, Objeto = pedido
 			clientes.put(data[1], cliente);
 			// System.out.println("Pedido Ingresado: "+pedidos.get(data[0]).getCodPedido());

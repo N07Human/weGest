@@ -1,4 +1,4 @@
-package wegestORIGINAL;
+package auxiliar;
 
 import java.sql.Date;
 
@@ -11,13 +11,13 @@ public class Pedido {
 	private String estadoPedido;
 	private String codMaquina;
 	private String cantidadPedido;
-	private int tiempoProceso;
+	private String tiempoProceso;
 	private int tiempoDisponible;
 	private int pedidoHecho;
 	private int pedidoEnCola;
 	private double prioridad;
 	
-	public Pedido(String codPedido,String codCliente, String tipoPedido, String cantidadPedido, String estadoPedido, String codMaquina, String fechaEntrega) {
+	public Pedido(String codPedido,String codCliente, String tipoPedido, String cantidadPedido, String estadoPedido, String codMaquina, String fechaEntrega, String tiempoProceso) {
 		this.codPedido = codPedido;
 		this.codCliente = codCliente;
 		this.tipoPedido = tipoPedido;
@@ -25,6 +25,7 @@ public class Pedido {
 		this.estadoPedido = estadoPedido;
 		this.fechaEntrega = fechaEntrega;
 		this.codMaquina = codMaquina;
+		this.tiempoProceso = tiempoProceso;
 	}
 	
 	public String getCodPedido() {
@@ -75,11 +76,11 @@ public class Pedido {
 		this.cantidadPedido = cantidadPedido;
 	}
 
-	public int getTiempoProceso() {
+	public String getTiempoProceso() {
 		return tiempoProceso;
 	}
 
-	public void setTiempoProceso(int tiempoProceso) {
+	public void setTiempoProceso(String tiempoProceso) {
 		this.tiempoProceso = tiempoProceso;
 	}
 

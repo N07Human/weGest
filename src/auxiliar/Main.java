@@ -1,8 +1,10 @@
-package wegestORIGINAL;
+package auxiliar;
+
+import java.text.ParseException;
 
 public class Main {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) throws ParseException {		
 	
 	/*
 		//Datos a escribir en map(Object[])
@@ -80,12 +82,13 @@ public class Main {
 		sec.exportSecuenciacion();*/
 		
 		Listas listas = new Listas();
-		listas.setMaquinas(3);
-		listas.generarListas();
-		listas.listarPorFecha();
+		listas.importar();
+		listas.ordenarPorMaquina();
 		listas.imprimirSecuenciacionMaquinas();
+		listas.printVelocidad();
+		listas.secuenciar("08:00");
+		listas.exportar();
 		
 	}
 
 }
-

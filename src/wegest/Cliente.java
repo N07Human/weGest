@@ -1,6 +1,8 @@
 package wegest;
 
-import java.util.*;
+import java.util.ArrayList;
+
+import auxiliar.Pedido;
 
 public class Cliente {
 	

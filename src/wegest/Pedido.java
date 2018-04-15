@@ -1,7 +1,5 @@
 package wegest;
 
-import java.sql.Date;
-
 public class Pedido {
 	
 	private String codPedido;
