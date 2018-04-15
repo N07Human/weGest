@@ -25,7 +25,7 @@ public class Listas {
 		this.clientes = new LinkedHashMap<>();
 		this.maquinas = new ArrayList<>();
 		this.maquinasSecuenciadas = new LinkedList<>();
-		this.datosEntrada = new ImportExcel("Datos_Pedidos_Test.xlsx", 10);
+		this.datosEntrada = new ImportExcel("Datos_Pedidos.xlsx", 10);
 	}
 
 	public void importar() {
@@ -36,7 +36,7 @@ public class Listas {
 			Cliente cliente = new Cliente(data[1], data[2], data[3], " ");
 			pedidos.put(data[0], pedido); // key = codPedido, Objeto = pedido
 			clientes.put(data[1], cliente);
-			System.out.println("Pedido Ingresado: " + pedidos.get(data[0]).getCodPedido());
+			//System.out.println("Pedido Ingresado: " + pedidos.get(data[0]).getCodPedido());   BOORRAR
 		}
 	}
 
@@ -52,7 +52,7 @@ public class Listas {
 			switch (maquina) {
 			case "M1":
 				maquinas.get(0).agregarPedido(Long.toString(prioridad), pedido);
-				System.out.println(pedidos.get(i).getCodCliente());
+				//System.out.println(pedidos.get(i).getCodCliente());			BORRAR
 				break;
 
 			case "M2":
@@ -122,7 +122,6 @@ public class Listas {
 	}
 
 	public void printVelocidad() {
-		setVelocidadHistorica("01-01-2015");
 		System.out.println(maquinas.get(0).getVelocidadHistorico());
 		System.out.println(maquinas.get(1).getVelocidadHistorico());
 		System.out.println(maquinas.get(2).getVelocidadHistorico());
