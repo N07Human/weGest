@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import wegestORIGINAL.Pedido;
 
 public class Maquina implements Secuenciable {
 

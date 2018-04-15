@@ -2,8 +2,6 @@ package wegest;
 
 import java.text.ParseException;
 
-import wegestORIGINAL.Listas;
-
 public class Main {
 
 	public static void main(String[] args) throws ParseException {		

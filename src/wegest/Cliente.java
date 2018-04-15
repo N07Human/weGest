@@ -2,9 +2,7 @@ package wegest;
 
 import java.util.*;
 
-import wegestORIGINAL.Pedido;
-
-public abstract class Cliente {
+public class Cliente {
 	
 	private String codigoCliente;
 	private String razonSocial;
@@ -19,7 +17,6 @@ public abstract class Cliente {
 		this.telefono = telefono;
 		this.pedidos = new ArrayList<>();
 	}
-	
-	public abstract double getPrioridad();
+
 
 }
