@@ -11,7 +11,6 @@ public class Maquina implements Secuenciable {
 	private List<Pedido> listaOrdenada;
 	private Map<String, Object[]> listaSecuenciada;
 	private double velocidadHistorica;
-	protected Calendar cal;
 	
 	public Maquina(String codMaquina) {
 		this.codMaquina = codMaquina;

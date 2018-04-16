@@ -31,7 +31,7 @@ public class Main {
 			System.out.println("Opciones. ");
 			System.out.println("1. Importar datos.");
 			System.out.println("2. Secuenciar. ");
-			System.out.println("3. Exportar. ");
+			System.out.println("3. Exportar Maq Secuenciadas/Clientes. ");
 			menu = Integer.parseInt(lector.readLine());
 			switch(menu) {
 			case 1: {
@@ -44,6 +44,7 @@ public class Main {
 			}
 			case 3:{
 				listas.exportar();
+				menu=-1;
 				break;
 			}
 			
