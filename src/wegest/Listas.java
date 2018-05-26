@@ -28,6 +28,7 @@ public class Listas {
 		this.maquinas = new ArrayList<>();
 		this.maquinasSecuenciadas = new LinkedList<>();
 		this.datosEntrada = new ImportExcel("Datos_Pedidos.xlsx", 10);
+		this.datosSalida = new ExportExcel();
 	}
 
 	public void importar() {
@@ -38,7 +39,7 @@ public class Listas {
 			Cliente cliente = new Cliente(data[1], data[2], data[3], " ");
 			pedidos.put(data[0], pedido); // key = codPedido, Objeto = pedido
 			clientes.put(data[1], cliente);
-			//System.out.println("Pedido Ingresado: " + pedidos.get(data[0]).getCodPedido());   BOORRAR
+			//System.out.println("Pedido Ingresado: " + pedidos.get(data[0]).getCodPedido());
 		}
 	}
 

@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Maquina implements Secuenciable {
+public class Maquina {
 
 	private String codMaquina;
 	private Map<String, List<Pedido>> lista;
@@ -79,6 +79,7 @@ public class Maquina implements Secuenciable {
 
 		}
 		this.velocidadHistorica = cantidadTotalPedidos / cantidadHoras;
+		System.out.println(velocidadHistorica);
 	}
 
 	public void imprimirLista() {
@@ -95,9 +96,9 @@ public class Maquina implements Secuenciable {
 
 	public void secuenciar(String hInicio) throws ParseException {
 		ordenarLista();
-		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		SimpleDateFormat dfatraso = new SimpleDateFormat("dd-MM-yyyy");
-		SimpleDateFormat dff = new SimpleDateFormat("dd/MM 'a las' hh:mm");
+		SimpleDateFormat dff = new SimpleDateFormat("dd/MM 'a las' HH:mm");
 		
 		Date horaInicioActual = new Date();
 		horaInicioActual = df.parse(hInicio);
@@ -106,10 +107,10 @@ public class Maquina implements Secuenciable {
 		double tiempoSumar = 0;
 		int key = 0;
 		listaSecuenciada.put("0",
-				new Object[] { "Fecha de Inicio", "Codigo Pedido", "Detalle", "Cantidad", "Fecha de Entrega", "Atraso"});
+				new Object[] { "Fecha de Inicio", "Codigo Pedido", "Detalle", "Cantidad", "Fecha de Entrega", "Atraso","Máquina","Estado"});
 		for (int i = 1; i < listaOrdenada.size(); i++) {
 			aux = listaOrdenada.get(i);
-			if (!aux.getEstadoPedido().equals("TRM")) {
+			if (!aux.getEstadoPedido().equals("TRM") && !aux.getEstadoPedido().equals("PRC")) {
 					key++;
 					horaInicioActual = horaInicioSiguiente;
 					tiempoSumar = Double.parseDouble(aux.getCantidadPedido()) / velocidadHistorica;
@@ -128,8 +129,8 @@ public class Maquina implements Secuenciable {
 					//System.out.println("ATRASO: "+atraso);
 					
 					listaSecuenciada.put(Integer.toString(key), new Object[] { dff.format(horaInicioActual), aux.getCodPedido(),
-							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega(), Integer.toString(atraso) });
-
+							aux.getTipoPedido(), aux.getCantidadPedido(), aux.getFechaEntrega(), Integer.toString(atraso),aux.getCodMaquina(),aux.getEstadoPedido() });
+					System.out.println(Integer.toString(key)+". Pedido: "+aux.getCodPedido()+" Iniciar: "+dff.format(horaInicioActual));
 			}
 
 		}
