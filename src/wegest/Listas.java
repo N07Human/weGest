@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
+//import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,17 +15,20 @@ public class Listas {
 	// private ArrayList<String[]> datosExcel;
 	private Map<String, Pedido> pedidos;
 	private Map<String, Cliente> clientes;
+	private Map<String,Object[]> clientesExportar;
 	private List<Maquina> maquinas;
 	private List<Maquina> maquinasSecuenciadas;
 	private ImportExcel datosEntrada;
-	// private ExportExcel datosSalida;
+	private ExportExcel datosSalida;
 
 	public Listas() {
 		this.pedidos = new LinkedHashMap<>();
 		this.clientes = new LinkedHashMap<>();
+		this.clientesExportar = new LinkedHashMap<>();
 		this.maquinas = new ArrayList<>();
 		this.maquinasSecuenciadas = new LinkedList<>();
 		this.datosEntrada = new ImportExcel("Datos_Pedidos.xlsx", 10);
+		this.datosSalida = new ExportExcel();
 	}
 
 	public void importar() {
@@ -36,12 +39,12 @@ public class Listas {
 			Cliente cliente = new Cliente(data[1], data[2], data[3], " ");
 			pedidos.put(data[0], pedido); // key = codPedido, Objeto = pedido
 			clientes.put(data[1], cliente);
-			//System.out.println("Pedido Ingresado: " + pedidos.get(data[0]).getCodPedido());   BOORRAR
+			//System.out.println("Pedido Ingresado: " + pedidos.get(data[0]).getCodPedido());
 		}
 	}
 
 	public void ordenarPorMaquina() throws ParseException {
-		System.out.println("Entra a ordenar (Secuenciar)");
+		//System.out.println("Entra a ordenar (Secuenciar)");
 		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		setMaquinas();
 		Set<String> keys = pedidos.keySet();
@@ -64,7 +67,7 @@ public class Listas {
 				break;
 			}
 		}
-		System.out.println("Sale de secuenciareeeeee (Secuenciar)");
+		//System.out.println("Sale de secuenciareeeeee (Secuenciar)");
 	}
 
 	public void setVelocidadHistorica(String fechaInicio) {
@@ -93,7 +96,7 @@ public class Listas {
 		}
 	}
 
-	public void imprimirImport() {
+	/*public void imprimirImport() {
 		ListIterator<String[]> it = datosEntrada.getDatosImportados().listIterator();
 		while (it.hasNext()) {
 			String[] datos = it.next(); // .next() lee hasta que encuentra espacio, a diferencia de
@@ -119,13 +122,9 @@ public class Listas {
 		for (String i : keys) {
 			System.out.println(i + " " + pedidos.get(i).getCodCliente());
 		}
-	}
+	}*/
 
-	public void printVelocidad() {
-		System.out.println(maquinas.get(0).getVelocidadHistorico());
-		System.out.println(maquinas.get(1).getVelocidadHistorico());
-		System.out.println(maquinas.get(2).getVelocidadHistorico());
-	}
+
 
 	public void agregarNuevoPedido(Pedido pedido) {
 		System.out.println("Solicita agregar pedido");
@@ -136,6 +135,14 @@ public class Listas {
 		for (Maquina maquina : maquinas) {
 			maquina.exportar();
 		}
+		Set<String> key = clientes.keySet();
+		int i=0;
+		clientesExportar.put(Integer.toString(i), new Object[] { "Id Cliente","Razon Social" });
+		for(String k: key) {
+			i++;
+			clientesExportar.put(Integer.toString(i), new Object[] { clientes.get(k).getCodigoCliente(),clientes.get(k).getRazonSocial() });
+		}
+		datosSalida.exportExcel("Clientes", clientesExportar, "clientes.xlsx");
 
 	}
 

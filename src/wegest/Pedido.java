@@ -10,9 +10,6 @@ public class Pedido {
 	private String codMaquina;
 	private String cantidadPedido;
 	private String tiempoProceso;
-	private int tiempoDisponible;
-	private int pedidoHecho;
-	private int pedidoEnCola;
 	private double prioridad;
 	
 	public Pedido(String codPedido,String codCliente, String tipoPedido, String cantidadPedido, String estadoPedido, String codMaquina, String fechaEntrega, String tiempoProceso) {
@@ -80,30 +77,6 @@ public class Pedido {
 
 	public void setTiempoProceso(String tiempoProceso) {
 		this.tiempoProceso = tiempoProceso;
-	}
-
-	public int getTiempoDisponible() {
-		return tiempoDisponible;
-	}
-
-	public void setTiempoDisponible(int tiempoDisponible) {
-		this.tiempoDisponible = tiempoDisponible;
-	}
-
-	public int getPedidoHecho() {
-		return pedidoHecho;
-	}
-
-	public void setPedidoHecho(int pedidoHecho) {
-		this.pedidoHecho = pedidoHecho;
-	}
-
-	public int getPedidoEnCola() {
-		return pedidoEnCola;
-	}
-
-	public void setPedidoEnCola(int pedidoEnCola) {
-		this.pedidoEnCola = pedidoEnCola;
 	}
 	
 	public double getPrioridad() {

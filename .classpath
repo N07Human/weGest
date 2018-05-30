@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="/home/fothwira/Documentos/Universidad/ICI/Año II/S1/EII210/Proyecto INTISOFT/poi-3.16-beta2/lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="/home/fothwira/Documentos/Universidad/ICI/Año II/S1/EII210/Proyecto INTISOFT/poi-3.16-beta2/lib/commons-collections4-4.1.jar"/>
 	<classpathentry kind="lib" path="/home/fothwira/Documentos/Universidad/ICI/Año II/S1/EII210/Proyecto INTISOFT/poi-3.16-beta2/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="/home/fothwira/Descargas/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
