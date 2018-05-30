@@ -99,10 +99,10 @@ public class Main {
 						System.out.println("///2. Editar pedido///");
 						System.out.println("Ingrese código de pedido a editar.");
 						// String codPedidoe = lector.readLine();
-						System.out.println("1. Ingrese código de cliente.");
-						System.out.println("2. Ingrese tipo de producto.");
-						System.out.println("3. Ingrese cantidad de producto.");
-						System.out.println("4. Ingrese fecha de entrega");
+						System.out.println("1. Cambiar código de cliente.");
+						System.out.println("2. Cambiar tipo de producto.");
+						System.out.println("3. Cambiar cantidad de producto.");
+						System.out.println("4. Cambiar fecha de entrega");
 						System.out.println("Ingrese '0' para salir.");
 						break;
 
@@ -111,7 +111,7 @@ public class Main {
 					}
 					break;
 				}
-			case 2: //ADMINISTRAR CLIENTES
+			case 2: // ADMINISTRAR CLIENTES
 				while (menu != 0) {
 					System.out.println("///Administrar Clientes///");
 					System.out.println("1. Ingresar nuevo cliente.");
@@ -132,8 +132,7 @@ public class Main {
 						// Date fechaEntrega = df.parse(lector.readLine());
 						String fechaEntrega = lector.readLine();
 						conectar.manageDB("INSERT INTO pedidos (idPedido,idCliente,producto,cantidad,entrega) VALUES("
-								+ codCliente + "," + tipoProducto + "," + cantidadProducto + ","
-								+ fechaEntrega + ")");
+								+ codCliente + "," + tipoProducto + "," + cantidadProducto + "," + fechaEntrega + ")");
 						break;
 
 					case 2: // EDITAR CLIENTE
@@ -151,20 +150,48 @@ public class Main {
 						break;
 					}
 				}
-				
+
 			case 3: // PROGRAMAS DE PRODUCCIÓN
-				while(menu!=0) {
+				menu = -1;
+				while (menu != 0) {
 					System.out.println("///(3) Programas de producción.///");
 					System.out.println("1 Obtener programa nuevo.");
 					System.out.println("2 Revisar programa anterior.");
 					System.out.println("Ingrese '0' para salir.");
-					
+
 					menu = Integer.parseInt(lector.readLine());
-					switch(menu){
+					switch (menu) {
 					case 1:
-						
+
 					}
-					
+
+				}
+			case 4: // ESTADISTICAS
+				menu = -1;
+				while (menu != 0) {
+					System.out.println("///(4) Estadística///");
+					System.out.println("1 Clientes.");
+					System.out.println("2 Ventas.");
+					System.out.println("Ingrese '0' para salir.");
+
+					menu = Integer.parseInt(lector.readLine());
+					switch (menu) {
+					case 1: // ESTADISTICAS - CLIENTES
+						while (menu != 0) {
+							System.out.println("///(4.1) CLIENTES///");
+							System.out.println("1 Obtener cliente mayoritario (volumen).");
+							System.out.println("2 Obtener cliente mayoritario (ventas).");
+							System.out.println("2 Obtener cliente más antiguo.");
+							System.out.println("Ingrese '0' para salir.");
+
+							menu = Integer.parseInt(lector.readLine());
+							switch (menu) {
+
+							}
+						}
+
+					}
+
 				}
 			}
 
