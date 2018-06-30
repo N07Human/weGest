@@ -1,21 +1,17 @@
-package wegest;
+package wegestSQL;
 
-import java.io.BufferedReader;
+//import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.sql.ResultSet;
+//import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import com.mysql.jdbc.PreparedStatement;
 
 public class Main {
 
-	public static void main(String[] args) throws ParseException, IOException {
+	public static void main(String[] args) throws ParseException, IOException, SQLException, ClassNotFoundException {
 
-		BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+		//BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
 
 		/*
 		 * System.out.println("/////////WeGest de INTIsoft///////");
@@ -39,18 +35,10 @@ public class Main {
 		 * 
 		 * } }
 		 */
-		ConectarDB conectar = new ConectarDB("jdbc:mysql://localhost:3306/empresa", "root", "");
-
-		try {
-			conectar.conectarDB();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		// conectar.manageDB("CREATE TABLE pedidos (idPedido int)");
 		// conectar.manageDB("INSERT INTO pedidos (idPedido) VALUES(12345)");
-
+/*
 		System.out.println("/////////WeGest de INTIsoft///////");
 		System.out.println("/////////version 2.0///////");
 		System.out.println("");
@@ -168,9 +156,9 @@ public class Main {
 						
 						
 
-						conectar.manageDB(statement);
 						
-						/*Listas listas = new
+						
+						Listas listas = new
 						 * Listas(); 
 						 * System.out.println(" "); 
 						 * listas.importar();
@@ -194,7 +182,7 @@ public class Main {
 						 * case 2:{ listas.secuenciar(horaInicio); break; }
 						 * case 3:{ listas.exportar(); menu=-1; break; }
 						 * } }
-						 */
+						 
 
 					}
 
@@ -229,7 +217,7 @@ public class Main {
 			}
 
 		}
-		/*
+		
 		 * try (PreparedStatement stmt =
 		 * conectar.prepareStatement("SELECT country FROM country")) { ResultSet rs =
 		 * stmt.executeQuery();
@@ -239,7 +227,12 @@ public class Main {
 		 * } catch (SQLException sqle) { System.out.println("Error en la ejecución:"+
 		 * sqle.getErrorCode() + " " + sqle.getMessage()); }
 		 */
-
+		Secuenciador secuenciador = new Secuenciador();
+		secuenciador.setVelocidad("01052015");
+		for(int i=0;i<3;i++) {
+		System.out.println("Velocidad máquina: "+(i+1)+" = "+secuenciador.getVelocidadMaquina(i));
+		}
+		secuenciador.secuenciar("2018-01-05 08:00:00");
 	}
 
 }

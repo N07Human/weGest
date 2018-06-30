@@ -1,4 +1,4 @@
-package wegest;
+package wegestSQL;
 
 public class Lista {
 	
